@@ -1,0 +1,55 @@
+---
+title: "Day 5 Morning Session"
+author: Matteo Torres
+format: html
+execute: 
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| message: false
+# load packages ----
+library(tidyverse)
+```
+
+`head()`, `tail()`, and `dim()` on the `dplyr::starwars` data frame:
+```{r}
+#| include: false
+# do some data exploration on the starwars df ----
+head(starwars)
+
+tail(starwars)
+
+dim(starwars)
+```
+
+- Create a ggplot (scatterplot) of character mass (y-axis) and height (x-axis)
+- Update the color of the points so that color changes based on the value of `mass`
+```{r}
+#| echo: false
+ggplot(data= starwars, aes(x= height, y= mass, color= mass))+
+  geom_point(color= "green") +
+  labs(x= "Height (cm)", y= "Mass (kg)", title= "Starwars Characters")
+```
+
+- Create a histogram fo character heights
+- Update the fill color (`fill`) to purple and the outside border line (`color`) of each histogram to orange
+- Update the axis labels
+- Update your code chunk options so that only the code and output graph appear in the rendered doc (no warnings or messages)
+```{r}
+#| fig-cap: "From short kings/queens to next year's possible NBA draft!"
+#| fig-alt: "This is my alt text ig"
+ggplot(data= starwars, aes(x= height)) +
+  geom_histogram(color= "orange", fill= "purple") +
+  labs(x= "Height (cm)", y= "Frequency", title= "Starwars Characters")
+```
+
+`df$col_name`
+
+```{r}
+sw_height_mean<- round(mean(starwars$height, na.rm= TRUE), digits= 3)
+```
+
+The mean height of all starwars characters is `r sw_height_mean`
